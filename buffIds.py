@@ -5863,6 +5863,13 @@ def description(s):
         "800170081" : "【角色】瞬移隐藏绳子特效",
         "800170231" : "岁光白条回满",
     }
+
+    overrides = {
+        "110006406" : "攻击力提升eog"
+    }
+
+    if s in overrides:
+        return overrides[s]
     if s in dict:
         return dict[s]
     return ""
