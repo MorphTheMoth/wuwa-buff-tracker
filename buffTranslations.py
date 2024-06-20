@@ -25,14 +25,25 @@ def translate(s):
         "" : "",
 
         #mortefi
+        "Baer" : "Mortefi",
         "监听并调用2颗龙鳞子弹buff - 全队重击用" : "14s - mortefi's coordinated attack",
-        "" : "",
         "" : "",
 
         #sanhua
         "Sanhua" : "Sanhua",
         "上场角色普通攻击伤害加深38%，持续14秒。角色退场删除" : "38% amplify basic - 14s - sanhua's outro,",
         "散华被动1-E技能伤害提升20%，持续8秒" : "20% skill dmg - 8s - trace 1",
+        "" : "",
+
+
+        "Nvzhu" : "Spectro rover",
+        "" : "",
+        "" : "",
+        "" : "",
+
+
+        "BaiLian" : "Baizhi",
+        "" : "",
         "" : "",
         "" : "",
 
@@ -47,3 +58,14 @@ def translate(s):
     if s in dict:
         return dict[s]
     return "cn - " + s
+
+#the logs dont have enough about this, have to time them manually..
+def ultDelays():
+    dict = {
+        "Sanhua" : 1.7,
+        "Encore" : 2.2,
+        "Verina" : 1.7
+    }
+    if s in dict:
+        return dict[s]
+    return 0
