@@ -5,9 +5,10 @@ def translate(s):
         #"对自己的所有伤害减少50%" : "50% dmg reduction - echo",
         #"无妄者-暗主大招后5秒内使用加伤50%" : "dreamless buffed",
         "拐套-使用退场技后，下一个人攻击力+22.5%，15秒。" : "22.5% atk - 15s - moonlight set",
-        "奶套-触发治疗为全队加攻15%，30秒。" : "15% atk - 30s - healing set",
+        "奶套-触发治疗为全队加攻15%，30秒。" : "15% atk - 30s - healing set",                   #TODO: all sets cd seems to not be refreshing
         "光套-qte登场后光伤+30%，15秒" : "30% dmg - 15s - spectro set",
         "火套-e后火伤加30%，15秒" : "30% dmg - 15s - fusion set",
+        "雷套-e、重击分别使自身雷伤加15%，15秒" : "30% dmg - 15s - electro set",
         "骑士-火伤+12%，15秒" : "12% fire+basic dmg - 15s - Inferno rider",
         "孤鸯-大招+12%，15秒" : "aix buff",
         "三头鸟-增伤12%，15秒" : "12% dmg - heron echo",
@@ -21,13 +22,13 @@ def translate(s):
         #"以上场角色为中心，原地留下灼烧大地，对上面的敌人每1秒造成安可攻击力270%的火元素伤害，持续6秒。" : "encore's outro",
         "火属性伤害提升10%" : "10% dmg - 10s - trace 1",
         "攻击力提高12%，最多2层，前后台都生效" : "24% atk - 5s - Stringmaster's stacks",
-        "增加自身4%热熔伤害，可叠加4层，持续6秒。" : "12% dmg - 6s - s1 encore",
+        "增加自身4%热熔伤害，可叠加4层，持续6秒。" : "12% dmg - 6s - s1 encore", #so much stuff isnt refreshing
         "" : "",
         "" : "",
 
         #mortefi
         "Baer" : "Mortefi",
-        "上场角色重击伤害加深38%，持续14秒。角色退场删除" : "14s - mortefi's coordinated attack",
+        "上场角色重击伤害加深38%，持续14秒。角色退场删除" : "Coordinated attacks - 14s - mortefi's coordinated attack",
         "【加强音】造成的暴击伤害提升30%。" : "Critical damage dealt by [Fortissimo] is increased by 30%.",
 
         #sanhua
@@ -37,43 +38,70 @@ def translate(s):
         "" : "",
 
         #Spectro rover
-        "Nvzhu" : "Spectro rover",
-        "变身后，解离伤害增加20%" : "surge state",
+        "Nvzhu" : "Spectro Rover",
         "" : "",
 
         #Baizhi
         "BaiLian" : "Baizhi",
-        "白芷提供医疗支援，令场上的角色每3秒回复白芷5%最大生命值的生命，持续30秒。受到此治疗效果时，还能获得全伤害加深15%的效果，持续6秒。" : "15% dmg deep - ~30s - baizhi's outro",
+        "白芷提供医疗支援，令场上的角色每3秒回复白芷5%最大生命值的生命，持续30秒。受到此治疗效果时，还能获得全伤害加深15%的效果，持续6秒。" : "15% dmg deep - 6s - baizhi's outro",
         "白莲被动1_加攻击力" : "20% atk - 20s - baizhi's trace",
-        "白莲大招周期生成子弹" : "Coordinated attacks - baizhi",
+        "白莲大招周期生成子弹" : "Coordinated attacks - 10s - baizhi",
 
         #verina
         "Jueyuan" : "Verina",
         "全队加攻击力20%" : "20% atk - 20s - verina's trace",
         "上场角色6秒内回复绝园总共60%最大生命值的生命，效果为逐渐衰减。全队伤害加深15%，持续30秒。" : "15% dmg deep - 30s - verina's outro",
         "" : "",
+        
+        
+        "Yinlin" : "Yinlin",
         "" : "",
 
         #Jiyan
         "Jiyan" : "Jiyan",
-        "" : "",
+        "Kakaluo" : "Calcharo",
         "" : "",
 
         #Havoc rover
-        "DarkNvzhu" : "Havoc rover",
+        "DarkNvzhu" : "Havoc Rover", #name might be different on male char?
+        "变身后，解离伤害增加20%" : "surge state",
         "" : "",
 
         #Danjin
         "Micai" : "Danjin",
         "上场角色暗元素伤害加深23%，持续14秒。" : "Danjin's outro",
-        "攻击力buff" : "30% atk at max stacks - 7s - s1",
-        #cn - 暗套-普攻或者重击加暗伤7.5%，最多4层，15秒 
-        #cn - 重击增伤24% - removed mechanics maybe? nothing like this is in her kit
+        #"烧血BUFF1" : "30% atk at max stacks - 7s - s1",
+        "暗套-普攻或者重击加暗伤7.5%，最多4层，15秒":"test 1",
+        "重击增伤24%":"test 2", #- removed mechanics maybe? nothing like this is in her kit
 
         #Taoqi
         "Taohua" : "Taoqi",
         "上场角色技能伤害加深38%，持续14秒。角色退场删除" : "38% amplify skill - 14s - Taoqi's outro",
-        "" : ""
+        "" : "",
+
+        #ids
+        "1102" : "Sanhua",
+        "1103" : "Baizhi",
+        "1104" : "Lingyang",
+        "1202" : "Chixia",
+        "1203" : "Encore",
+        "1204" : "Mortefi",
+        "1301" : "Calcharo",
+        "1302" : "Yinlin",
+        "1303" : "Yuanwu",
+        "1304" : "Jinhsi",
+        "1402" : "Yangyang",
+        "1403" : "Aalto",
+        "1404" : "Jiyan",
+        "1405" : "Jianxin",
+        "1501" : "Spectro Rover",
+        "1502" : "Spectro Rover",
+        "1503" : "Verina",
+        "1601" : "Taoqi",
+        "1602" : "Danjin",
+        "1603" : "Camellya", #?
+        "1604" : "Havoc Rover",
+        "1605" : "Havoc Rover",
     }
 
     if s in dict:
@@ -81,12 +109,18 @@ def translate(s):
     return "cn - " + s
 
 #the logs dont have enough about this, have to time them manually..
-def ultDelays():
+def ultDelay(s):
     dict = {
         "Sanhua" : 1.7,
         "Encore" : 2.2,
-        "Verina" : 1.7
+        "Verina" : 1.7,
     }
     if s in dict:
         return dict[s]
     return 0
+
+def buffTime(s):
+    s = s[s.find("-")+2:s.find("-")+s[s.find("-"):].find("s")]
+    if s.isnumeric():
+        return float(s)
+    return -1
