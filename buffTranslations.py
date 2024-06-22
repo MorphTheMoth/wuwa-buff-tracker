@@ -9,13 +9,16 @@ def translate(s):
         "光套-qte登场后光伤+30%，15秒" : "30% dmg - 15s - spectro set",
         "火套-e后火伤加30%，15秒" : "30% dmg - 15s - fusion set",
         "雷套-e、重击分别使自身雷伤加15%，15秒" : "30% dmg - 15s - electro set",
-        "骑士-火伤+12%，15秒" : "12% fire+basic dmg - 15s - Inferno rider",
-        "孤鸯-大招+12%，15秒" : "aix buff",
+        "骑士-火伤+12%，15秒" : "12% fire+basic dmg - 15s - Inferno rider echo",
+        " 无冠者分身-共鸣技能伤害+12%，15秒" : "12% havoc+skill dmg - 15s - crownless echo",
         "三头鸟-增伤12%，15秒" : "12% dmg - heron echo",
+        "孤鸯-大招+12%，15秒" : "aix buff",
         "乌龟-增伤" : "10% dmg - 15s - bell echo",
-        " 无冠者分身-共鸣技能伤害+12%，15秒" : "12% havoc+skill dmg - 15s - crownless",
+
+        #weapons    #TODO use "ModifierMagnitude" in buffs.py to check for the number of compies
         "攻击力提升eog" : "6% dmg per stack - 10s - Emerald of genesis",
-        "" : "",
+        "攻击" : "4% atk per stack up to 5 - 7s - Atumtrace",
+        "攻击力提高12%，最多2层，后台时生效" : "12% per stack - stringmaster background buff",
 
         #encore
         "Anke" : "Encore",
@@ -49,17 +52,25 @@ def translate(s):
 
         #verina
         "Jueyuan" : "Verina",
-        "全队加攻击力20%" : "20% atk - 20s - verina's trace",
-        "上场角色6秒内回复绝园总共60%最大生命值的生命，效果为逐渐衰减。全队伤害加深15%，持续30秒。" : "15% dmg deep - 30s - verina's outro",
+        "全队加攻击力20%" : "20% atk - 20s - Verina's trace",
+        "上场角色6秒内回复绝园总共60%最大生命值的生命，效果为逐渐衰减。全队伤害加深15%，持续30秒。" : "15% dmg deep - 30s - Verina's outro",
         "" : "",
         
-        
+        #Yinlin
         "Yinlin" : "Yinlin",
-        "" : "",
+        "上场角色雷元素伤害加深20%，共鸣解放伤害加深25%，持续14秒。角色退场删除" : "20% electro 25% ult aplify - 14s - Yinlin's outro",
+        "暴击率提升15%，持续5s" : "15% cr - 5s - Yinlin crit rate buff",
+        "吟霖核心被动机制" : "Coordinated attacks - 18s - Yinlin",
+        "" : "",#TODO 2nd trace
 
         #Jiyan
         "Jiyan" : "Jiyan",
+        "" : "",
+
+        #Calcharo
         "Kakaluo" : "Calcharo",
+        "释放非大招状态重击时，卡卡罗获得共鸣解放伤害10%，持续15秒" : "10% lib dmg - 15s - Trace 1", #TODO
+        #"以上场角色为中心，释放闪电脉冲，对周围敌人造成卡卡罗攻击力781%的雷属性伤害。" : "Calcharo's outro",
         "" : "",
 
         #Havoc rover
@@ -71,8 +82,9 @@ def translate(s):
         "Micai" : "Danjin",
         "上场角色暗元素伤害加深23%，持续14秒。" : "Danjin's outro",
         #"烧血BUFF1" : "30% atk at max stacks - 7s - s1",
-        "暗套-普攻或者重击加暗伤7.5%，最多4层，15秒":"test 1",
+        "暗套-普攻或者重击加暗伤7.5%，最多4层，15秒":"test 1",  #TODO
         "重击增伤24%":"test 2", #- removed mechanics maybe? nothing like this is in her kit
+        "" : "",
 
         #Taoqi
         "Taohua" : "Taoqi",
@@ -102,6 +114,11 @@ def translate(s):
         "1603" : "Camellya", #?
         "1604" : "Havoc Rover",
         "1605" : "Havoc Rover",
+        "" : "",
+        "" : "",
+        "" : "",
+
+
     }
 
     if s in dict:
@@ -114,6 +131,8 @@ def ultDelay(s):
         "Sanhua" : 1.7,
         "Encore" : 2.2,
         "Verina" : 1.7,
+        "Yinlin" : 3.2,
+        "Calcharo" : 2,
     }
     if s in dict:
         return dict[s]
