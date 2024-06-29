@@ -5872,4 +5872,4 @@ def description(s):
         return overrides[s]
     if s in dict:
         return dict[s]
-    return ""
+    return " "

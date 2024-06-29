@@ -30,9 +30,9 @@ def translate(s):
         "" : "",
 
         #mortefi
-        "Baer" : "Mortefi",
-        "上场角色重击伤害加深38%，持续14秒。角色退场删除" : "Coordinated attacks - 14s - mortefi's coordinated attack",
-        "【加强音】造成的暴击伤害提升30%。" : "Critical damage dealt by [Fortissimo] is increased by 30%.",
+        "Baer" : "Mortefi",#Coordinated attacks - 14s - mortefi's coordinated attack
+        "上场角色重击伤害加深38%，持续14秒。角色退场删除" : "38% amplify heavy - 14s - Mortefi's outro",
+        #"【加强音】造成的暴击伤害提升30%。" : "Critical damage dealt by [Fortissimo] is increased by 30%.",
 
         #sanhua
         "Sanhua" : "Sanhua",
@@ -90,6 +90,10 @@ def translate(s):
         "Taohua" : "Taoqi",
         "上场角色技能伤害加深38%，持续14秒。角色退场删除" : "38% amplify skill - 14s - Taoqi's outro",
         "" : "",
+        
+        #Jinhsi
+        "Jinxi" : "Jinhsi",
+        "" : "",
 
         #ids
         "1102" : "Sanhua",
@@ -142,4 +146,4 @@ def buffTime(s):
     s = s[s.find("-")+2:s.find("-")+s[s.find("-"):].find("s")]
     if s.isnumeric():
         return float(s)
-    return -1
+    return None
