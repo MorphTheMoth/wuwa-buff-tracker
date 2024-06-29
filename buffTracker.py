@@ -109,7 +109,7 @@ while True:
              outString += "  :  " + str(round(buff[2], 2))
 
     if not debug:
-        os.system('cls')
+        print('\033[H\033[J', end='')
     else:
         print("\n---------------\n")
         
