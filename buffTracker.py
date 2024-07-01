@@ -9,8 +9,11 @@ logsPath = "\\Wuthering Waves Game\\Client\\Saved\\Logs\\Client.log"
 logsFile = open(gamePath+logsPath, "r", encoding="utf-8")
 logsFile.seek(0, os.SEEK_END)
 currentBuffs = []  #[[char, desc, timer], ...]
+fieldTime = {}
 charInPlay = ""
 oldSize = os.path.getsize(gamePath+logsPath)
+oldTime = datetime.now()
+inCombat = False
 debug = False
 
 # 本地添加buff = Local buff added
@@ -22,7 +25,6 @@ def getCurrentChar(log):
     if charInPlay == "":
         if log.find("BP_") != -1:
             s = log[log.find("BP_")+3:]
-            #print(s[:s.find("_")])
             s = translate(s[:s.find("_")])
             if s[:2] != "cn":
                 return s
@@ -61,12 +63,19 @@ while True:
 
     for log in logs:
         charInPlay = getCurrentChar(log)
-        if log.find("添加等待设置时停的tag") != -1:                                   #ult
-            for buff in currentBuffs:
-                buff[2] += ultDelay(charInPlay)
         if log.find(" SetProgress [progress: ") != -1:                              #if you're in a loading screen
             currentBuffs = []
-        if any(log.find(s) == -1 for s in ["buffId: ", "Player:BP_", "[说明: "]):   #filter for buffs on the player
+            fieldTime = {}
+            charInPlay = ""
+        if log.find("OpenViewImplement 界面打开开始 [ViewName: CountDownFloatTips]") != -1:    #timer starts
+            inCombat = True
+        if log.find("[RemoveTickView] 移除界面Tick [name: CountDownFloatTips]") != -1:         #timer stops
+            inCombat = False
+        if log.find("添加等待设置时停的tag") != -1:                                   #when a character is ulting
+            for buff in currentBuffs:
+                buff[2] += ultDelay(charInPlay)
+            fieldTime[charInPlay] -= ultDelay(charInPlay)
+        if any(log.find(s) == -1 for s in ["buffId: ", "Player:BP_"]):   #filter for buffs on the player
             continue
         if log.find("服务器通过通知FightBuffComponent恢复Buff") != -1:               #these gets added when a character spawns, and never go away
             continue
@@ -84,22 +93,32 @@ while True:
             else:
                 currentBuffs[indexOfBuff(char,desc)][2] = buffTime(desc)
         elif not debug and log.find("本地移除buff") != -1:      #Local buff removed
-            if not indexOfBuff(char,desc) is False:  #to distinguish with 0
+            if not indexOfBuff(char,desc) is False:  #to distinguish 0
                 currentBuffs.pop(indexOfBuff(char,desc))
 
+    timeDelta = (datetime.now()-oldTime)
+    oldTime = datetime.now()
+    timeDiff = timeDelta.seconds + timeDelta.microseconds/1000000
+    
+    if inCombat:
+        if charInPlay in fieldTime:
+            fieldTime[charInPlay] += timeDiff
+        elif charInPlay != "":
+            fieldTime[charInPlay] = timeDiff
     
     for buff in currentBuffs:
         if buff[2] != None:
-            buff[2] -= (datetime.now()-oldTime).seconds + (datetime.now()-oldTime).microseconds/1000000
+            buff[2] -= timeDiff
         if sum(buff[1] == b[1] for b in currentBuffs) >= 3:
             currentBuffs = list(filter(lambda b: b[1] != buff[1], currentBuffs))
             currentBuffs.append(["Team",buff[1],buff[2]])                                                 #TODO: exact time
-    oldTime = datetime.now()
 
     currentBuffs = sorted(currentBuffs, key=lambda a:a[0])
     
     title = ""
     outString = ""
+    for char, t in fieldTime.items():
+        outString += char + ": " + str(round(t, 2)) + "\n"
     for buff in currentBuffs:
         if title != buff[0]:
             title = buff[0]
@@ -109,8 +128,9 @@ while True:
              outString += "  :  " + str(round(buff[2], 2))
 
     if not debug:
+        #print("\n---------------\n")
         print('\033[H\033[J', end='')
     else:
         print("\n---------------\n")
-        
+    
     print(outString)

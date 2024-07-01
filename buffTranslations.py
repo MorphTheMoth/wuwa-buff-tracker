@@ -26,7 +26,7 @@ def translate(s):
         "火属性伤害提升10%" : "10% dmg - 10s - trace 1",
         "攻击力提高12%，最多2层，前后台都生效" : "24% atk - 5s - Stringmaster's stacks",
         "增加自身4%热熔伤害，可叠加4层，持续6秒。" : "12% dmg - 6s - s1 encore", #so much stuff isnt refreshing
-        "" : "",
+        #"安可大招改变普攻标签" : "Encore's ult - 10s",
         "" : "",
 
         #mortefi
@@ -95,6 +95,9 @@ def translate(s):
         "Jinxi" : "Jinhsi",
         "" : "",
 
+        #Yanwu
+        "Yuanwu" : "Yanwu",
+
         #ids
         "1102" : "Sanhua",
         "1103" : "Baizhi",
@@ -133,10 +136,13 @@ def translate(s):
 def ultDelay(s):
     dict = {
         "Sanhua" : 1.7,
-        "Encore" : 2.2,
+        "Encore" : 2.32,
         "Verina" : 1.7,
         "Yinlin" : 3.2,
         "Calcharo" : 2,
+        "Taoqi" : 2.46,
+        "Yanwu" : 2.22,
+        "Jinhsi" : 3.4,
     }
     if s in dict:
         return dict[s]
