@@ -65,16 +65,19 @@ while True:
         charInPlay = getCurrentChar(log)
         if log.find(" SetProgress [progress: ") != -1:                              #if you're in a loading screen
             currentBuffs = []
-            fieldTime = {}
             charInPlay = ""
-        if log.find("OpenViewImplement 界面打开开始 [ViewName: CountDownFloatTips]") != -1:    #timer starts
-            inCombat = True
-        if log.find("[RemoveTickView] 移除界面Tick [name: CountDownFloatTips]") != -1:         #timer stops
             inCombat = False
-        if log.find("添加等待设置时停的tag") != -1:                                   #when a character is ulting
+        if log.find("OpenViewImplement 界面打开开始 [ViewName: CountDownFloatTips]") != -1:
+            fieldTime = {}
+            inCombat = True
+        if log.find("[Clear] 尝试执行销毁的界面 [Name: CountDownFloatTips]") != -1:
+            inCombat = False
+        if log.find("添加等待设置时停的tag [Tag: CameraSequence]") != -1:                                   #when a character is ulting
             for buff in currentBuffs:
-                buff[2] += ultDelay(charInPlay)
-            fieldTime[charInPlay] -= ultDelay(charInPlay)
+                if buff[2] != None:
+                    buff[2] += ultDelay(charInPlay)
+            if charInPlay in fieldTime:
+                fieldTime[charInPlay] -= ultDelay(charInPlay)
         if any(log.find(s) == -1 for s in ["buffId: ", "Player:BP_"]):   #filter for buffs on the player
             continue
         if log.find("服务器通过通知FightBuffComponent恢复Buff") != -1:               #these gets added when a character spawns, and never go away
